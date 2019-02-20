@@ -2,66 +2,130 @@
 <html>
 	<head>
 		<title>Christopher Grant</title>
+		<meta charset="utf-8"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script>
+		$(document).ready(function()
+		{
+			var current = null; //the current tab
+			
+			//Updates the document
+			function docdata()
+			{	
+				if (current)
+				{
+					var tab = $("#nav_" + current.attr('id'));
+					if (tab)
+					{
+						tab.removeClass('active');
+					}
+				}
+			
+				current = $('#home');
+				if (window.location.hash)
+					current = $(window.location.hash);
+				
+				if (current)
+				{
+					current.fadeIn(500);
+					
+					var tab = $("#nav_" + current.attr('id'));
+					if (tab)
+					{
+						tab.addClass('active')
+					}
+				}
+			}
+
+		$(window).bind('hashchange', function() {current.fadeOut(500, docdata)});
+		docdata();
+		});
+		</script>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-			<a class="navbar-brand" href="#">Navbar</a>
+			<a class="navbar-brand" href="#">Christopher Grant:</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarColor01">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					<li id="nav_home" class="nav-item active">
+						<a class="nav-link" href="#home">Home</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#About">About</a>
+					<li id="nav_about" class="nav-item">
+						<a class="nav-link" href="#about">About</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#Projects">Projects</a>
+					<li id="nav_projects" class="nav-item">
+						<a class="nav-link" href="#projects">Projects</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#Contact">Contact</a>
+					<li id="nav_contact" class="nav-item">
+						<a class="nav-link" href="#contact">Contact</a>
 					</li>
 				</ul>
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" placeholder="Search" type="text">
-					<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-				</form>
 			</div>
 		</nav>
 		
 		<div class="container">
-			<h2>
-			Welcome!
-			</h2>
-			<p>
-			This is the website of Chris Grant
-			</p>
-			<div id="About">
+		
+			<div id="home" style="display: none;">
+				<h2>
+					Welcome!
+				</h2>
+				<p>
+					Welcome to the personal website of Christopher Grant!
+				</p>
 			</div>
-			<div id="Projects">
+			
+			
+			<div id="about" style="display: none;">
+				<h2>
+				About me!
+				</h2>
+				<p>
+				I am a student!
+				</p>
+			</div>
+			
+			<div id="projects" style="display: none;">
+				<h2>
+					Projects
+				</h2>
 				<ul>
 					<li>
-						<h2>OpenRA</h2>
+						<h3>OpenRA <a href="https://github.com/OpenRA/OpenRA"><i class="fas fa-code-branch"></i></a></h3>
+						<p>
+						OpenRA is an open-source RTS.
+						</p>
 					</li>
 					<li>
-						<h2>Engineer's Nightmare</h2>
+						<h3>Engineer's Nightmare <a href="https://github.com/engineers-nightmare/engineers-nightmare"><i class="fas fa-code-branch"></i></a></h3>
+						<p>
+						Engineer's Nightmare is a 3D open world survival game where the player is pitted against the
+						struggles of maintaining their spacecraft against the forces of entropy and evil.
+						</p>
 					</li>
 				</ul>
+				<i class="fab fa-github"></i> Github: https://github.com/chrisagrant
+				
 			</div>
-			<div id="Contact">
-				Unfortunately, I am not comfortable giving out my contact information<br/>If you need to get ahold of me, you need not ask.
+			
+			<div id="contact" style="display: none;">
+				<span><i class="fas fa-graduation-cap"></i><a href="mailto:chrisgrant@cmail.carleton.ca">If you are a student at Carleton, please email me at chrisgrant@cmail.carleton.ca</a></span><br/>
+				<span><i class="fas fa-envelope"></i><a href="mailto:grantchristophera@gmail.com">All other inquiries should be sent to grantchristophera@gmail.com</a></span><br/>
+				<span><i class="fab fa-linkedin"></i> LinkedIn:</span> <br/>
+				<span><i class="fab fa-facebook-square"></i> Facebook:</span> <br/>
+				<span><i class="fas fa-mobile-alt"></i></span>
 			</div>
 		</div>
 		
 		<div class="footer-copyright py3 text-center">
-			<span>Copyright Christopher Grant 2018. Licensed under the GNU GPL 3.0 or newer.</span>
+			<span>&copy; Christopher Grant 2018. Licensed under the GNU GPL 3.0 or newer.</span>
 		</div>
 	</body>
 </html>
